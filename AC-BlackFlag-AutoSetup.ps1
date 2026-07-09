@@ -75,7 +75,8 @@ foreach ($file in @("VBS.cmd", "HV-PlugNPlay.bat")) {
         Invoke-WebRequest -Uri $url -OutFile $dest
         Write-Host "  OK $file" -ForegroundColor Green
     } catch {
-        Write-Host "  ERROR $file: $_" -ForegroundColor Red
+        $errorMsg = $_.Exception.Message
+        Write-Host "  ERROR $file : $errorMsg" -ForegroundColor Red
     }
 }
 
@@ -91,7 +92,8 @@ try {
     $size = [math]::Round((Get-Item $zipPath).Length / 1MB, 2)
     Write-Host "[OK] ZIP descargado ($size MB)" -ForegroundColor Green
 } catch {
-    Write-Host "[ERROR] No se pudo descargar: $_" -ForegroundColor Red
+    $errorMsg = $_.Exception.Message
+    Write-Host "[ERROR] No se pudo descargar: $errorMsg" -ForegroundColor Red
     Read-Host "Presiona ENTER para salir"
     exit 1
 }
@@ -103,7 +105,8 @@ try {
     Expand-Archive -Path $zipPath -DestinationPath $gamePath -Force
     Write-Host "[OK] Archivos extraidos en: $gamePath" -ForegroundColor Green
 } catch {
-    Write-Host "[ERROR] No se pudo extraer: $_" -ForegroundColor Red
+    $errorMsg = $_.Exception.Message
+    Write-Host "[ERROR] No se pudo extraer: $errorMsg" -ForegroundColor Red
     Read-Host "Presiona ENTER para salir"
     exit 1
 }
