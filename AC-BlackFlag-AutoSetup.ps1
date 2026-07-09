@@ -2,7 +2,7 @@
 # AC-BlackFlag-AutoSetup.ps1
 # ============================================================
 
-$RepoRelease = "https://github.com/teflay/AC-BlackFlag/releases/download/v1.0"
+$RepoRelease = "https://github.com/teflay/AC-BlackFlag/releases/download/1.0"
 $ZipUrl = "$RepoRelease/AC-BlackFlag-Files.zip"
 
 Write-Host "========================================" -ForegroundColor Cyan
